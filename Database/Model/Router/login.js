@@ -12,6 +12,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+
+//adding data
 router.post("/", async (req, res) => {
   try {
     const addingData = new LoginData(req.body);
