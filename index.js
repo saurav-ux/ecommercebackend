@@ -19,7 +19,6 @@ app.use(cors());
 const PORT = process.env.PORT || 5001;
 app.use(express.json());
 app.use(cookieParser());
-
 app.use("/login", router);
 // below is jwt autentication
 // app.use("/conData", auth, productRouter);
