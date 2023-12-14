@@ -9,7 +9,7 @@ import product3Router from "./Database/Model/Router/con3Data.js";
 import product4Route from "./Database/Model/Router/con4Data.js";
 import product5Route from "./Database/Model/Router/con5Data.js";
 import cookieParser from "cookie-parser";
-import auth from "./Middleware/auth.js";
+
 //By using the cors middleware and calling app.use(cors()),
 // you allow your Express server to respond to requests from different origins,
 // including http://localhost:3001.
@@ -21,7 +21,7 @@ app.use(cors({
   methods:['POST','GET','PATCH'],
   credentials:true
 }))
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5003;
 app.use(express.json());
 app.use(cookieParser());
 app.use("/login", router);
