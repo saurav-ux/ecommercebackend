@@ -18,7 +18,7 @@ const app = express();
 app.use(cors());
 app.use(cors({
   origin:['https://deploy-mern-1whq.vercel.app'],
-  methods:['POST','GET','PATCH'],
+  methods:['POST','GET','PATCH','DELETE'],      
   credentials:true
 }))
 const PORT = process.env.PORT || 5003;
@@ -36,7 +36,6 @@ app.get("/", (req, res) => {
   console.log("Test");
   res.send("Hello Saurav");
 });
-
 
 app.listen(PORT, () =>
   console.log(`Server is running on : http://localhost:${PORT}`)
