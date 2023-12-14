@@ -62,7 +62,7 @@ router.post("/validate", async (req, res) => {
       const isMatch = await bcrypt.compare(password, useremail.password);
       if (isMatch) {
 
-        jwt.sign({ userId: useremail._id }, "saurckdlopesauravvr", { expiresIn: '30s' }, (err, token) => {
+        jwt.sign({ userId: useremail._id }, "saurckdlopesauravvr", { expiresIn: '24h' }, (err, token) => {
           if (err) {
               console.log("Token Error: ", err);
               res.status(500).send({ message: "Failed to create token" });
