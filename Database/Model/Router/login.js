@@ -68,7 +68,7 @@ router.post("/validate", async (req, res) => {
               res.status(500).send({ message: "Failed to create token" });
           } else {
               // res.json({ token });
-              res.status(200).send({token:token,status:true,name:useremail.name})
+              res.status(200).send({token:token,status:true,name:useremail.name,id:useremail._id})
           }
       });
 
@@ -97,6 +97,59 @@ router.post("/validate", async (req, res) => {
     res.status(500).send({ error: "Internal Server Error" });
   }
 });
+
+// GET request to retrieve wishlist items by user ID
+router.get('/wishlist/:userId', async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+      const userDetails = await LoginData.findById(userId);
+
+      if (!userDetails) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      const wishlistItems = userDetails.wishlist;
+      res.status(200).json(wishlistItems);
+  } catch (error) {
+      res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+//post
+// Assuming you have your mongoose model defined as 'LoginDetail'
+
+// POST request to add an item to the wishlist by user ID
+router.post('/wishlist/:userId', async (req, res) => {
+  console.log("body",req.body)
+  const { off, price, cutprice, imgName } = req.body;
+  const userId = req.params.userId;
+
+  try {
+      const userDetails = await LoginData.findById(userId);
+
+      if (!userDetails) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Creating a new wishlist item
+      const newWishlistItem = {
+          off,
+          price,
+          cutprice,
+          imgName
+      };
+
+      userDetails.wishlist.push(newWishlistItem); // Adding the new item to the wishlist array
+      await userDetails.save(); // Save the updated user details
+
+      res.status(201).json({ message: 'Item added to wishlist successfully' });
+  } catch (error) {
+      res.status(500).json({ message: 'Server Error in Post' });
+  }
+});
+
+
 
 
 function verifyToken(req,res,next){

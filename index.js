@@ -8,6 +8,7 @@ import product2Router from "./Database/Model/Router/con2Data.js";
 import product3Router from "./Database/Model/Router/con3Data.js";
 import product4Route from "./Database/Model/Router/con4Data.js";
 import product5Route from "./Database/Model/Router/con5Data.js";
+import wishlistRoute from "./Database/Model/Router/wishlist.js";
 import cookieParser from "cookie-parser";
 
 //By using the cors middleware and calling app.use(cors()),
@@ -32,6 +33,7 @@ app.use('/con2Data',product2Router)
 app.use('/con3Data',product3Router)
 app.use('/con4Data',product4Route)
 app.use('/con5Data',product5Route)
+app.use('/wishlist',wishlistRoute)
 app.get("/", (req, res) => {
   console.log("Test");
   res.send("Hello Saurav");
