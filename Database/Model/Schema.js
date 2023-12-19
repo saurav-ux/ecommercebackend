@@ -15,12 +15,32 @@ const loginDetails = new mongoose.Schema({
         type:String,
         required: true
     },
-    tokens:[{
-        token:{
-          type:String,
-          required: true
+    wishlist:[{
+        off:{
+            type:Number,
+            required:true,
+        },
+        price:{
+            type:Number,
+            required:true,
+        },
+        cutprice:{
+            type:Number,
+            required:true,
+        },
+        imgName:{
+            type:String,
+            required:true,
         }
     }]
+
+
+    // tokens:[{
+    //     token:{
+    //       type:String,
+    //       required: true
+    //     }
+    // }]
 })
 
 
